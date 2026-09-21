@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/*
+ * TOKENS DE CHARTE : valeurs de départ (charte ANDA non fournie).
+ * Pour adopter la charte officielle, modifier uniquement ce bloc.
+ */
+:root {
+  --navy: #0a2a4a;
+  --navy-deep: #061c33;
+  --blue: #1e88c8; /* accents graphiques (contraste 3.9:1 sur blanc : jamais pour du texte courant) */
+  --blue-strong: #146aa0; /* texte / liens sur fond clair (5.8:1 sur blanc) */
+  --blue-light: #7cc4ec; /* texte / accents sur fond navy (7.6:1) */
+  --blue-soft: #e6f2fa;
+  --green: #1e7b4b; /* CTA principal : 5.3:1 avec du texte blanc */
+  --green-dark: #17603a;
+  --sand: #f7f9fb;
+  --ink: #0f1b2d;
+  --muted: #475569;
+  --line: #d6e2ec;
+  --danger: #b42318;
+  --focus: #1e88c8;
+  --radius: 1rem;
+  --shadow-soft: 0 1px 2px rgb(10 42 74 / 0.06), 0 8px 24px -8px rgb(10 42 74 / 0.14);
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-blue: var(--blue);
+  --color-blue-strong: var(--blue-strong);
+  --color-blue-light: var(--blue-light);
+  --color-blue-soft: var(--blue-soft);
+  --color-green: var(--green);
+  --color-green-dark: var(--green-dark);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --radius-card: var(--radius);
+  --shadow-soft: var(--shadow-soft);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--navy);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p {
+    max-width: 68ch;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .surface-dark {
+    --focus: #ffffff;
+  }
+  .surface-dark h1,
+  .surface-dark h2,
+  .surface-dark h3 {
+    color: #fff;
+  }
+  ::selection {
+    background: var(--blue-soft);
+    color: var(--navy);
+  }
+}
+
+@layer components {
+  .wrap {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+  }
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Apparitions au scroll (progressive enhancement, désactivées avec prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .wave-drift {
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  .wave-drift-slow {
+    animation: drift 20s ease-in-out infinite alternate-reverse;
+  }
+  .fish-swim {
+    animation: swim 18s linear infinite;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-2%);
+  }
+  to {
+    transform: translateX(2%);
+  }
+}
+@keyframes swim {
+  from {
+    transform: translateX(-6%);
+  }
+  to {
+    transform: translateX(6%);
+  }
+}
+
+@media print {
+  header,
+  .no-print {
+    display: none !important;
+  }
+}
