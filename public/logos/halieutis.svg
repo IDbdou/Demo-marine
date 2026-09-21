@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 60" role="img" aria-label="HALIEUTIS (logo provisoire)">
+  <!-- TODO(logo) : remplacer ce fichier par le logo officiel -->
+  <rect x="1.5" y="1.5" width="177" height="57" rx="10" fill="none" stroke="#0A2A4A" stroke-opacity=".7" stroke-width="3"/>
+  <path d="M14 38c8-10 14 10 22 0s14 10 22 0" fill="none" stroke="#1E88C8" stroke-width="3" stroke-linecap="round"/>
+  <text x="70" y="37" font-family="Open Sans, Arial, sans-serif" font-size="16" font-weight="700" fill="#0A2A4A">HALIEUTIS</text>
+</svg>
